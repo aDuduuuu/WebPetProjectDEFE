@@ -13,6 +13,7 @@ import Footer from '../components/Footer';
 import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
+import { useRef } from 'react';
 
 const DogBreedDetail = () => {
   const { breedId } = useParams();
@@ -135,6 +136,73 @@ const DogBreedDetail = () => {
     setModalContent(content);
     setShowModal(!showModal);
   };
+
+  const colorMap = {
+    Black: '#000000',
+    Tan: '#D2B48C',
+    Silver: '#C0C0C0',
+    Red: '#B22222',
+    Beige: '#A67B5B',
+    White: '#FFFFFF',
+    Gray: '#808080',
+    Blue: '#3B5998',
+    Cream: '#FFFDD0',
+    Grizzle: '#888888',
+    Fawn: '#E5AA70',
+    Brown: '#8B4513',
+    Navy: '#000080',
+    Olive: '#808000',
+    Maroon: '#800000',
+    Teal: '#008080',
+    Coral: '#FF7F50',
+    Gold: '#FFD700',
+    Lavender: '#E6E6FA',
+    Mint: '#98FF98',
+    Peach: '#FFE5B4',
+    Plum: '#DDA0DD',
+    Salmon: '#FA8072',
+    Turquoise: '#40E0D0',
+    Violet: '#EE82EE',
+    Mustard: '#FFDB58',
+    Charcoal: '#36454F',
+    Ivory: '#FFFFF0',
+    Burgundy: '#800020',
+    Aqua: '#00FFFF',
+    Cyan: '#00FFFF',
+    Magenta: '#FF00FF',
+    PastelPink: '#FFD1DC',
+    PastelGreen: '#77DD77',
+    PastelBlue: '#AEC6CF',
+    PastelYellow: '#FDFD96',
+    Sienna: '#A0522D',
+    Umber: '#635147',
+    Ochre: '#CC7722',
+    Clay: '#B66A50',
+    Moss: '#8A9A5B',
+    Bronze: '#CD7F32',
+    Copper: '#B87333',
+    Platinum: '#E5E4E2',
+    NeonPink: '#FF6EC7',
+    NeonGreen: '#39FF14',
+    NeonOrange: '#FF6700',
+    NeonBlue: '#1F51FF',
+    SkyBlue: '#87CEEB',
+    ForestGreen: '#228B22',
+    SeaGreen: '#2E8B57',
+    Chocolate: '#D2691E',
+    Crimson: '#DC143C',
+    Indigo: '#4B0082',
+    Lime: '#00FF00',
+    Orchid: '#DA70D6',
+    Periwinkle: '#CCCCFF',
+    Rose: '#FF007F',
+    Ruby: '#E0115F',
+    Sapphire: '#0F52BA',
+    Sand: '#C2B280',
+    Slate: '#708090',
+    Wheat: '#F5DEB3',
+  };  
+  
 
   const breedTranslations = {
     'Affenpinscher': t('BREED_Affenpinscher'),
@@ -994,22 +1062,22 @@ const DogBreedDetail = () => {
       <Header />
 
       <motion.div
-        className="dog-breed-detail relative max-w-4xl mx-auto px-4 py-8"
+        className="dog-breed-detail-page relative flex flex-col items-center min-h-screen py-10 px-4 bg-gradient-to-b from-[#264653] to-[#2a9d8f] text-white"
         initial={{ opacity: 0, y: 40 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
       >
         {/* Language Buttons */}
-        <div className="absolute top-4 right-4 translate-x-16 flex space-x-2 z-10">
+        <div className="absolute top-4 right-4 flex space-x-2 z-10">
           <button
             onClick={() => i18n.changeLanguage('en')}
-            className="px-4 py-2 border border-white text-[#97d5c8] rounded-md text-sm transition duration-200 hover:bg-white hover:text-[#97d5c8]"
+            className="px-3 py-1 border border-white text-white rounded-md text-xs font-medium transition duration-200 hover:bg-white hover:text-[#2a9d8f]"
           >
             EN
           </button>
           <button
             onClick={() => i18n.changeLanguage('vi')}
-            className="px-4 py-2 border border-white text-[#97d5c8] rounded-md text-sm transition duration-200 hover:bg-white hover:text-[#97d5c8]"
+            className="px-3 py-1 border border-white text-white rounded-md text-xs font-medium transition duration-200 hover:bg-white hover:text-[#2a9d8f]"
           >
             VI
           </button>
@@ -1017,7 +1085,7 @@ const DogBreedDetail = () => {
 
         {/* Title */}
         <motion.h1
-          className="text-4xl font-extrabold text-center mb-4 text-gray-800"
+          className="text-3xl md:text-5xl font-bold mb-3 text-center text-[#e9f5f2]"
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2, duration: 0.6 }}
@@ -1027,7 +1095,7 @@ const DogBreedDetail = () => {
 
         {/* Group Info */}
         <motion.div
-          className="flex items-center justify-center mb-6"
+          className="mb-6"
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ delay: 0.3, duration: 0.5 }}
@@ -1037,21 +1105,21 @@ const DogBreedDetail = () => {
           </span>
         </motion.div>
 
-        {/* Main Carousel */}
+        {/* Carousel with Thumbnails */}
         <motion.div
-          className="w-full md:w-3/4 lg:w-2/3 mx-auto mb-8 relative"
+          className="w-full max-w-3xl relative mb-8"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.4, duration: 0.7 }}
         >
-          <Slider {...settingsMain} className="main-slider rounded-xl overflow-hidden shadow-lg">
+          <Slider {...settingsMain} className="main-slider rounded-lg shadow-lg overflow-hidden">
             {images.map((img, index) => (
               <div key={index} className="relative">
                 <motion.img
                   src={img}
                   alt={`${dogBreed.name} - ${index}`}
-                  className="w-full h-[400px] object-cover"
-                  whileHover={{ scale: 1.05 }}
+                  className="w-full h-72 md:h-96 object-cover"
+                  whileHover={{ scale: 1.03 }}
                   transition={{ duration: 0.4 }}
                 />
                 <motion.div
@@ -1064,36 +1132,56 @@ const DogBreedDetail = () => {
             ))}
           </Slider>
         </motion.div>
+
+        {/* Thumbnails */}
+        <div className="flex justify-center gap-2 mt-4">
+          {images.map((img, idx) => (
+            <img
+              key={idx}
+              src={img}
+              alt={`thumb-${idx}`}
+              className="w-16 h-16 object-cover rounded-md cursor-pointer border-2 border-transparent hover:border-white transition duration-300"
+              onClick={() => sliderRef.current.slickGoTo(idx)}
+            />
+          ))}
+        </div>
       </motion.div>
 
       {/* Phần thông tin chi tiết phía dưới */}
       <div className="dog-breed-info">
 
-        <div className="physical-attributes-container bg-[#b8d5c0] p-6 rounded-lg flex items-center space-x-8 justify-center">
+        <div className="flex flex-col md:flex-row items-center justify-center gap-6 p-6 rounded-2xl shadow-deep bg-white max-w-4xl mx-auto my-6">
           {/* Ảnh chó */}
-          <div className="dog-image">
-            <img src={dogBreed.image3} alt={dogBreed.name} className="w-32 h-32 rounded-lg object-cover" />
+          <div className="flex-shrink-0">
+            <img
+              src={dogBreed.image3}
+              alt={dogBreed.name}
+              className="w-28 h-28 md:w-32 md:h-32 rounded-xl object-cover border border-gray-200 shadow-sm"
+            />
           </div>
 
-          {/* Thông tin chiều cao */}
-          <div className="dog-info text-center">
-            <img src={heightIcon} alt="Chiều cao" className="icon" />
-            <h3 className="font-bold text-lg">{t('HEIGHT')}</h3>
-            <p>{dogBreed.height.min} - {dogBreed.height.max} inches</p>
-          </div>
+          {/* Thông tin */}
+          <div className="flex-1 flex justify-around md:justify-evenly gap-4 flex-wrap">
+            {/* Chiều cao */}
+            <div className="flex flex-col items-center">
+              <img src={heightIcon} alt="Height" className="w-6 h-6 mb-1" />
+              <h3 className="text-teal-700 font-semibold">{t('HEIGHT')}</h3>
+              <p className="text-gray-600 text-sm">{dogBreed.height.min} - {dogBreed.height.max} inches</p>
+            </div>
 
-          {/* Thông tin cân nặng */}
-          <div className="dog-info text-center">
-            <img src={weightIcon} alt="Cân nặng" className="icon" />  
-            <h3 className="font-bold text-lg">{t('WEIGHT')}</h3>
-            <p>{dogBreed.weight.min} - {dogBreed.weight.max} lbs</p>
-          </div>
+            {/* Cân nặng */}
+            <div className="flex flex-col items-center">
+              <img src={weightIcon} alt="Weight" className="w-6 h-6 mb-1" />
+              <h3 className="text-teal-700 font-semibold">{t('WEIGHT')}</h3>
+              <p className="text-gray-600 text-sm">{dogBreed.weight.min} - {dogBreed.weight.max} lbs</p>
+            </div>
 
-          {/* Tuổi thọ trung bình */}
-          <div className="dog-info text-center">
-            <img src={birthdayIcon} alt="Tuổi thọ" className="icon" />
-            <h3 className="font-bold text-lg">{t('LIFE_EXPECTANCY')}</h3>
-            <p>{dogBreed.lifespan.min} - {dogBreed.lifespan.max} {t('YEAR')}</p>
+            {/* Tuổi thọ */}
+            <div className="flex flex-col items-center">
+              <img src={birthdayIcon} alt="Life Expectancy" className="w-6 h-6 mb-1" />
+              <h3 className="text-teal-700 font-semibold">{t('LIFE_EXPECTANCY')}</h3>
+              <p className="text-gray-600 text-sm">{dogBreed.lifespan.min} - {dogBreed.lifespan.max} {t('YEAR')}</p>
+            </div>
           </div>
         </div>
 
@@ -1282,9 +1370,9 @@ const DogBreedDetail = () => {
                 <div id="coat-details" className="coat-details">
 
                   {/* Coat Type Section */}
-                  <div className="coat-type">
+                  <div className="coat-section">
                     <h4
-                      className="text-16423C cursor-pointer hover:underline mb-7 font-semibold"
+                      className="cursor-pointer hover:underline font-semibold"
                       onClick={() =>
                         toggleModal(t('Coat_Type'), t('Coat_Type_Description'))
                       }
@@ -1293,15 +1381,8 @@ const DogBreedDetail = () => {
                     </h4>
                     <ul id="coatTypeList">
                       {[
-                        'Wiry',
-                        'Hairless',
-                        'Smooth',
-                        'Rough',
-                        'Corded',
-                        'Double',
-                        'Curly',
-                        'Wavy',
-                        'Silky',
+                        'Wiry', 'Hairless', 'Smooth', 'Rough',
+                        'Corded', 'Double', 'Curly', 'Wavy', 'Silky'
                       ].map((type) => (
                         <li
                           key={type}
@@ -1314,9 +1395,9 @@ const DogBreedDetail = () => {
                   </div>
 
                   {/* Coat Length Section */}
-                  <div className="coat-length">
+                  <div className="coat-section">
                     <h4
-                      className="text-16423C cursor-pointer hover:underline mt-7 mb-7 font-semibold"
+                      className="cursor-pointer hover:underline font-semibold"
                       onClick={() =>
                         toggleModal(t('Coat_Length'), t('Coat_Length_Description'))
                       }
@@ -1335,7 +1416,7 @@ const DogBreedDetail = () => {
                     </ul>
                   </div>
 
-                  </div>
+                </div>
             </div>
           )}
         </div>
@@ -1591,11 +1672,26 @@ const DogBreedDetail = () => {
         {/* Danh sách màu sắc, chỉ hiển thị khi isColorsVisible là true */}
         {isColorsVisible && (
           <ul className="dog-colors-list">
-            {dogBreed.colors.map((color, index) => (
-              <li key={index} className="dog-color-item">
-                {color}
-              </li>
-            ))}
+            {dogBreed.colors.map((color, index) => {
+              // Xử lý khi có nhiều màu (ví dụ "Gray & White")
+              const colorNames = color.split('&').map((c) => c.trim());
+              const gradient =
+                colorNames.length > 1
+                  ? `linear-gradient(to right, ${colorNames
+                      .map((c) => colorMap[c] || '#ccc')
+                      .join(',')})`
+                  : colorMap[colorNames[0]] || '#ccc';
+
+              return (
+                <li key={index} className="dog-color-item">
+                  <span
+                    className="dog-color-swatch"
+                    style={{ background: gradient }}
+                  ></span>
+                  {color}
+                </li>
+              );
+            })}
           </ul>
         )}
 

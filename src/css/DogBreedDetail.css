@@ -1,51 +1,50 @@
-/* Đặt nền tổng thể và màu chữ cho trang */
+/* Tổng thể nền và chữ */
 .dog-breed-detail-page {
-  background-color: #325f62;
+  background: linear-gradient(to bottom, #264653, #2a9d8f);
   color: #ffffff;
-  min-height: 100vh;
 }
 
-/* Căn chỉnh phần tên và mô tả */
-.dog-breed-detail {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 2rem;
+/* Tiêu đề */
+.dog-breed-detail-page h1 {
+  color: #e9f5f2;
 }
 
-.dog-breed-detail h1 {
-  color: #b8d5c0;
-  font-size: 3rem;
-  font-weight: bold;
-  margin-bottom: 1rem;
+/* Nút ngôn ngữ */
+.dog-breed-detail-page button {
+  font-weight: 500;
 }
 
-/* Kiểu cho nút nhóm */
-.group-button {
-  padding: 0.5rem 1rem;
-  background-color: #90c2af;
-  color: black;
-  border-radius: 0.5rem;
-  font-weight: 600;
-}
-
-/* Kiểu cho carousel chính */
+/* Carousel */
 .main-slider .slick-slide {
   display: flex;
   justify-content: center;
+  align-items: center;
 }
 
 .main-slider img {
-  width: 600px;
-  height: 400px;
-  object-fit: cover;
   border-radius: 0.5rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
 }
 
-/* Kiểu cho mũi tên carousel */
-.slick-prev:before, .slick-next:before {
+/* Mũi tên carousel */
+.slick-prev:before,
+.slick-next:before {
   font-size: 30px;
   color: #ffffff;
+}
+
+/* Thumbnails */
+.dog-breed-detail-page .thumbnail {
+  width: 64px;
+  height: 64px;
+  border-radius: 0.375rem;
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: border 0.3s;
+}
+
+.dog-breed-detail-page .thumbnail:hover {
+  border: 2px solid #ffffff;
 }
 
 .slick-prev, .slick-next {
@@ -74,60 +73,65 @@
   color: #666;
 }
 
-/* Khung chứa các thuộc tính vật lý */
 .physical-attributes-container {
-  background-color: #b8d5c0;
+  background-color: #ffffff;
+  border-radius: 1rem;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   padding: 1.5rem;
-  border-radius: 0.5rem;
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: center;
-  gap: 2rem;
+  gap: 1.5rem;
   max-width: 900px;
   margin: 2rem auto;
 }
 
-/* Ảnh chó */
 .dog-image img {
-  width: 8rem;
-  height: 8rem;
-  border-radius: 0.5rem;
+  width: 7rem;
+  height: 7rem;
+  border-radius: 0.75rem;
   object-fit: cover;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
 }
 
-/* Kiểu cho từng mục thông tin */
 .dog-info {
   display: flex;
   flex-direction: column;
   align-items: center;
-  color: #1a3d3f;
   text-align: center;
+  color: #1a3d3f;
 }
 
 .dog-info h3 {
-  font-size: 1.25rem;
-  font-weight: bold;
-  margin-top: 0.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #0f766e; /* Màu teal đậm */
 }
 
 .dog-info p {
-  font-size: 1rem;
-  margin-top: 0.25rem;
+  font-size: 0.875rem;
+  color: #666;
 }
 
-/* Kiểu cho icon */
 .dog-info .icon {
   width: 2rem;
   height: 2rem;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.25rem;
   display: block;
 }
+
+.shadow-deep {
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+}
+
 
 /* Phần Temperament and Levels */
 .temperament-levels-section {
   margin-top: 2rem;
+  padding: 0 1rem;
   width: 100%;
-  padding: 0 2rem;
 }
 
 /* Nút chọn thuộc tính */
@@ -164,11 +168,11 @@
 }
 
 .trait-section::-webkit-scrollbar {
-  height: 8px; /* Chiều cao của thanh cuộn ngang */
+  height: 6px;
 }
 
 .trait-section::-webkit-scrollbar-thumb {
-  background-color: #b8d5c0;
+  background-color: rgba(22, 66, 60, 0.4);
   border-radius: 4px;
 }
 
@@ -227,33 +231,94 @@
   background-color: #1a3d3f;
 }
 
+.coat-details {
+  display: flex;
+  justify-content: space-between;
+  gap: 32px; /* khoảng cách giữa 2 bên */
+  flex-wrap: wrap; /* để đảm bảo responsive */
+  margin-top: 16px;
+}
+
+.coat-section {
+  flex: 1;
+  min-width: 200px;
+}
+
+.coat-section h4 {
+  color: #16423C;
+  font-size: 1.1rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.coat-section ul {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0;
+}
+
+.coat-section li {
+  display: inline-block;
+  padding: 6px 12px;
+  border-radius: 12px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: #16423C;
+  background-color: #e6f0ec;
+  border: 1px solid #d0e4db;
+  opacity: 0.8;
+}
+
+.coat-section li.selected {
+  background-color: #16423C;
+  color: #ffffff;
+  border-color: #16423C;
+  opacity: 1;
+}
+
+.coat-section li.disabled {
+  opacity: 0.4;
+  background-color: #f5f5f5;
+  color: #999;
+  border-color: #e0e0e0;
+}
+
 .coat-details ul {
   list-style: none;
   padding: 0;
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
+  gap: 8px;
+  margin: 0;
 }
 
 .coat-details li {
-  padding: 8px 12px;
-  border: 1px solid transparent;
-  border-radius: 4px;
-  background-color: #C4DACB; /* Button background */
-  color: #16423C; /* Text color */
-  font-weight: bold;
-  cursor: not-allowed; /* Indicate the button is not clickable */
-  transition: all 0.3s ease-in-out;
+  display: inline-block;
+  padding: 6px 12px;
+  border-radius: 12px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: #16423C;
+  background-color: #e6f0ec; /* nền nhẹ */
+  border: 1px solid #d0e4db; /* viền nhạt */
+  opacity: 0.8;
+  transition: all 0.3s ease;
 }
 
 .coat-details li.disabled {
-  opacity: 0.5; /* Dim unselected buttons */
+  opacity: 0.4;
+  background-color: #f5f5f5;
+  color: #999;
+  border-color: #e0e0e0;
 }
-
 .coat-details li.selected {
-  background-color: #C4DACB;
-  color: #16423C;
-  border-color: #16423C; /* Highlight border for selected */
+  background-color: #16423C;
+  color: #ffffff;
+  border-color: #16423C;
+  opacity: 1;
 }
 .dog-description-container {
   margin: 20px;
@@ -346,42 +411,61 @@
 }
 
 .colors-title {
-  font-size: 24px;
-  font-weight: bold;
+  font-size: 1.5rem;
+  font-weight: 700;
   color: #16423C;
   text-transform: uppercase;
-  letter-spacing: 2px;
-  margin-bottom: 10px;
-  border-bottom: 3px solid #16423C;
-  padding-bottom: 5px;
+  letter-spacing: 1px;
+  margin-bottom: 1rem;
+  border-bottom: 2px solid #16423C;
+  padding-bottom: 0.3rem;
   cursor: pointer;
-  transition: color 0.3s ease, border-color 0.3s ease;
+  transition: all 0.3s ease;
 }
 
 .colors-title:hover {
-  color: #C4DACB;
-  border-color: #C4DACB;
+  color: #0E7C7B; /* Tông xanh đậm, nổi bật khi hover */
+  border-color: #0E7C7B;
 }
 
 /* CSS cho phần danh sách màu sắc */
 .dog-colors-list {
-  list-style-type: none;
+  list-style: none;
   padding: 0;
   margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px; /* khoảng cách giữa các color item */
 }
 
 .dog-color-item {
-  background-color: #C4DACB;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.9rem;
+  font-weight: 500;
   color: #16423C;
-  font-weight: bold;
-  padding: 8px 16px;
-  border-radius: 20px;
-  margin: 4px 0;
-  display: inline-block;
-  transition: background-color 0.3s ease, color 0.3s ease;
+  background-color: #f5f5f5;
+  border-radius: 12px;
+  padding: 6px 10px;
+  transition: background-color 0.3s ease;
+  cursor: default;
 }
 
 .dog-color-item:hover {
-  background-color: #16423C;
-  color: #C4DACB;
+  background-color: #e0e0e0;
+}
+
+.dog-color-item:hover .dog-color-swatch {
+  width: 40px;
+  height: 40px;
+  transition: width 0.3s ease, height 0.3s ease;
+}
+
+.dog-color-swatch {
+  width: 16px;
+  height: 16px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  flex-shrink: 0;
 }
